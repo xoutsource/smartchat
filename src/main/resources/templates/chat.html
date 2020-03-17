@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>欢迎咨询</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="/css/chat.css" rel="stylesheet">
+
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/chat.js"></script>
+</head>
+<body>
+<div id="container">
+    <div id="content">
+        <div id="scroll">
+            <ul id="save"></ul>
+        </div>
+    </div>
+
+    <div id="edit">
+        <input type="text" name="" id="txt" th:placeholder="${placeholder}">
+        <input type="button" name="" value="发送" onclick="sendMsg()" id="btn">
+    </div>
+
+    <div id="prompt" style="display:none;background:white;">
+        <ul id="promptul">
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>
+
+<script type="text/javascript">
+    $(function(){
+        delaySearch();
+    });
+</script>

@@ -1,0 +1,71 @@
+#app
+server:
+    port: 8080
+# 数据库连接配置
+spring:
+    application:
+        name: smartchat
+    datasource:
+        #使用Mysql
+        type: com.alibaba.druid.pool.DruidDataSource
+        url: jdbc:mysql://rm-bp143l8w0217wh741ho.mysql.rds.aliyuncs.com:3306/xoutsource_db?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Hongkong&useOldAliasMetadataBehavior=true
+        username: tommy
+        password: Tommypwd
+        driverClassName: com.mysql.cj.jdbc.Driver
+        #连接池的配置信息
+        initialSize: 5
+        minIdle: 5
+        maxActive: 20
+        maxWait: 60000
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: SELECT 1
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxPoolPreparedStatementPerConnectionSize: 20
+        connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+        filters: stat,wall,logback
+    http:
+        # 解决中文乱码问题
+        encoding:
+            charset: UTF-8
+            enabled: true
+            force: true
+    #thymeleaf模板配置
+    thymeleaf:
+        prefix: classpath:/templates
+        enabled: true
+        encoding: UTF-8
+        suffix: .html
+        cache: false
+#mybatis 配置
+mybatis:
+    mapper-locations: classpath:mapping/*.xml
+    type-aliases-package: com.xos.smartchat.dao.mapper
+    configuration:
+        map-underscore-to-camel-case: true
+        #打印sql
+        log-prefix: dao.
+# pagehelper properties
+pagehelper:
+    offsetAsPageNum: true
+    rowBoundsWithCount: true
+    pageSizeZero: true
+    reasonable: false
+    params: pageNum=pageHelperStart;pageSize=pageHelperRows;
+    supportMethodsArguments: false
+# log
+logging:
+    level:
+        #Mapper所在的包
+        com.xos.smartchat.dao.mapper: error
+
+elasticsearch:
+    hosts: 192.168.1.4:9200
+    scheme: http
+
+esconfig:
+    index: smartchat
+
